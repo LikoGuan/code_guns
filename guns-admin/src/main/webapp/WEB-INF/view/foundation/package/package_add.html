@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="packName" name="包装名称" underline="true"/>
+                    <#input id="packImg" name="图片" underline="true"/>
+                    <#select id="measureUnit" name="计量单位">
+                        <option value="0">请选择</option>
+                        @for(mu in measureUnitList!) {
+                        <option value="${mu.id}">${mu.desc}</option>
+                        @}
+                    </#select>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="unitFee" name="单位费用" underline="true"/>
+                            <#input id="packageLimitation" name="包装限制" underline="true"/>
+                            <#input id="packDesc" name="描述" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PackageInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PackageInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/foundation/package/package_info.js"></script>
+@}

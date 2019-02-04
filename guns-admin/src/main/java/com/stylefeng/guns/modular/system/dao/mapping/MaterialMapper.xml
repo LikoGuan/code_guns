@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.MaterialMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Material">
+        <id column="id" property="id" />
+        <result column="cat_id" property="catId" />
+        <result column="material_name" property="materialName" />
+        <result column="measure_unit" property="measureUnit" />
+        <result column="keywords" property="keywords" />
+        <result column="material_desc" property="materialDesc" />
+        <result column="width" property="width" />
+        <result column="length" property="length" />
+        <result column="thickness" property="thickness" />
+        <result column="unit_weight" property="unitWeight" />
+        <result column="pack_id" property="packId" />
+        <result column="is_real" property="isReal" />
+        <result column="is_merchandise" property="isMerchandise" />
+        <result column="create_time" property="createTime" />
+        <result column="is_validate" property="isValidate" />
+        <result column="last_update" property="lastUpdate" />
+        <result column="brand_id" property="brandId" />
+        <result column="supplier_id" property="supplierId" />
+        <result column="material_thumb" property="materialThumb" />
+        <result column="comment" property="comment" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cat_id, material_name, measure_unit, keywords, material_desc, width, length, thickness, unit_weight, pack_id, is_real, is_merchandise, create_time, is_validate, last_update, brand_id, supplier_id, material_thumb, comment
+    </sql>
+    
+    <select id="getMaterialList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+		select * from material where 1 = 1
+		<if test="name != null and name !=''">
+			and material_name like CONCAT('%',#{name},'%')
+		</if>
+		<choose>
+			<when test="orderByField != null and orderByField !=''">
+				<choose>
+					<when test="isAsc == true">
+						order by ${orderByField} ASC
+					</when>
+					<otherwise>
+						order by ${orderByField} DESC
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by id ASC
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="organizationInfoForm">
+
+            <input type="hidden" id="id" value="${organization.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="simplename" name="组织名称" underline="true" value="${organization.simplename}"/>
+                    <#input id="address" name="地址" underline="true" value="${organization.address}"/>
+                    <#input id="contactPerson" name="联系人" underline="true" value="${organization.contactPerson}"/>
+                    <#input id="tips" name="备注" underline="true" value="${organization.tips}"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="fullname" name="组织全称" underline="true" value="${organization.fullname}"/>
+                    <#input id="num" name="排序" underline="true" value="${organization.num}"/>
+                    <#input id="contactPhone" name="联系电话" underline="true" value="${organization.contactPhone}"/>
+                    <#input id="pName" name="上级组织" readonly="readonly" hidden="pid"
+                            hiddenValue="${organization.pid}" value="${pName}"
+                            clickFun="OrganizationInfoDlg.showOrganizationSelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+
+            <!-- 父级组织的选择框 -->
+            <div id="parentOrganizationMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentOrganizationMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrganizationInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrganizationInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/organization/organization_info.js"></script>
+@}

@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="districtInfoForm">
+        
+            <input type="hidden" id="id" value="">
+            <input type="hidden" id="level" value="">
+            
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="districtName" name="地区名称" underline="true"/>
+                            <#input id="shortName" name="简称" underline="true"/>
+                            <#input id="sortOrder" name="排序顺序"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="pName" name="上级区域" readonly="readonly" hidden="pid" underline="true"
+                            clickFun="DistrictInfoDlg.showDistrictSelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                            <#input id="longitude" name="经度" underline="true"/>
+                            <#input id="latitude" name="纬度" underline="true"/>
+                </div>
+            </div>
+            
+            <div id="parentDistrictMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentDistrictMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DistrictInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DistrictInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/foundation/district/district_info.js"></script>
+@}

@@ -1,0 +1,74 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="materialInfoForm">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                     <#input id="categoryName" name="材料分类" readonly="readonly" hidden="catId" underline="true"
+                            clickFun="MaterialInfoDlg.showCategorySelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                     <#input id="materialName" name="材料名称" underline="true"/>
+                     <#select id="measureUnit" name="计量单位" underline="true">
+						   <option value="1">米</option>
+						   <option value="2">分米</option>
+						   <option value="3">厘米</option>
+						   <option value="4">毫米</option>
+					 </#select>
+                     <#input id="keywords" name="关键词" underline="true"/>
+                     <#input id="width" name="宽度" underline="true"/>
+                     <#input id="length" name="长度" underline="true"/>
+                     <#input id="thickness" name="厚度" underline="true"/>
+                     <#select id="unitWeight" name="重量单位" underline="true">
+						   <option value="1">千克</option>
+						   <option value="2">克</option>
+					 </#select>
+                     <#input id="materialDesc" name="描述" underline="true"/>
+                </div>
+
+                <div class="col-sm-6">
+                     <#select id="packId" name="包装方式" underline="true">
+                           @for(pack in packageList!) {
+                              <option value="${pack.packId}">${pack.packName}</option>
+                           @}
+                     </#select>
+                     <#select id="isReal" name="是否实物" underline="true">
+                           <option value="1">是</option>
+						   <option value="0">否</option>
+                     </#select>
+                     <#select id="isMerchandise" name="是否为普通商品" underline="true">
+                           <option value="1">是</option>
+						   <option value="0">否</option>
+                     </#select>
+                     <#select id="brandId" name="品牌" underline="true">
+                           @for(brand in brandList!) {
+                              <option value="${brand.brandId}">${brand.brandName}</option>
+                           @}
+                     </#select>
+                     <#select id="supplierId" name="生产商" underline="true">
+                           @for(suppliers in suppliersList!) {
+                             <option value="${suppliers.suppliersId}">${suppliers.suppliersName}</option>
+                           @}
+                     </#select>
+                     <#input id="materialThumb" name="缩略图" underline="true"/>
+                     <#input id="comment" name="备注" underline="true"/>
+                </div>
+            </div>
+            
+            <div id="categoryMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="categoryMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MaterialInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MaterialInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/foundation/material/material_info.js"></script>
+@}

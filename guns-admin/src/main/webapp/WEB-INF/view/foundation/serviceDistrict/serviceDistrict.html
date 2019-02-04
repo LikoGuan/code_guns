@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>服务区域管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <#input id="orgName" name="客户名称" readonly="readonly" hidden="orgid" clickFun="ServiceDistrict.showOrganizationSelectTree(); return false;"/>
+                            </div>
+                            <div class="col-sm-3">
+                              <#button name="搜索" icon="fa-search" clickFun="ServiceDistrict.search()"/>
+                           </div>
+                        </div>
+                        <div id="organizationContent" style="display: none; position: absolute; z-index: 200;">
+				          <ul id="organizationContentTree" class="ztree tree-box" style="width: 249px !important;"></ul>
+			            </div>
+                        <div class="hidden-xs" id="ServiceDistrictTableToolbar" role="group">
+                            @if(shiro.hasPermission("/serviceDistrict/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="ServiceDistrict.openAddServiceDistrict()"/>
+                            @}
+                            @if(shiro.hasPermission("/serviceDistrict/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="ServiceDistrict.openServiceDistrictDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/serviceDistrict/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="ServiceDistrict.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ServiceDistrictTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/foundation/serviceDistrict/serviceDistrict.js"></script>
+@}

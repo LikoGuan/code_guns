@@ -1,0 +1,67 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#select id="procId" name="工艺">
+                        <option value="0">请选择</option>
+                        @for(processing in processingList!) {
+                        <option value="${processing.procId}">${processing.name}</option>
+                        @}
+                    </#select>
+                    <#input id="name" name="名称" underline="true"/>
+                    <#input id="accessoryDesc" name="配件描述" underline="true"/>
+                    <#input id="width" name="宽度" underline="true"/>
+                    <#input id="length" name="长度" underline="true"/>
+                    <#input id="thickness" name="厚度" underline="true"/>
+                    <#select id="measureUnit" name="计量单位">
+                        <option value="0">请选择</option>
+                        @for(mu in measureUnitList!) {
+                        <option value="${mu.id}">${mu.desc}</option>
+                        @}
+                    </#select>
+                    <#select id="unitWeight" name="单位重量">
+                        <option value="0">请选择</option>
+                        @for(wu in weightUnitList!) {
+                        <option value="${wu.id}">${wu.desc}</option>
+                        @}
+                    </#select>
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="weight" name="重量" underline="true"/>
+                    <#select id="isValidate" name="是否有效">
+                        <option value="1">有效</option>
+                        <option value="0">无效</option>
+                    </#select>
+                    <#select id="brandId" name="品牌">
+                        <option value="0">请选择</option>
+                        @for(brand in brandList!) {
+                        <option value="${brand.brandId}">${brand.brandName}</option>
+                        @}
+                    </#select>
+                    <#select id="supplierId" name="生产商">
+                        <option value="0">请选择</option>
+                        @for(suppliers in suppliersList!) {
+                        <option value="${suppliers.suppliersId}">${suppliers.suppliersName}</option>
+                        @}
+                    </#select>
+                    <#input id="materialThumb" name="缩略图" underline="true"/>
+                    <#input id="comment" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AccessoryInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AccessoryInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/Accessory/accessory/accessory_info.js"></script>
+@}

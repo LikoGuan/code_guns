@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="manufacturerRankForm">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                       <#input id="orgName" name="客户名称" underline="true" readonly="readonly" hidden="manufacturerId"
+						       clickFun="ManufacturerRankInfoDlg.showOrganizationSelectTree(); return false;" style="background-color: #ffffff !important;"/>
+
+                          <#input id="rankName" name="等级名称"/>
+                </div>
+
+                <div class="col-sm-6">
+                          <#input id="rank" name="制造商等级" underline="true"/>
+                          <#select id="typeId" name="制造商类别" underline="true">
+                               @for(type in typeList!){
+                                    <option value="${type.id}">${type.typeName}</option>
+                               @}
+					      </#select>
+                </div>
+            </div>
+            
+            <!-- 这是组织选择的下拉框 -->
+			<div id="organizationContent" class="menuContent"
+				 style="display: none; position: absolute; z-index: 200;">
+				<ul id="treeDemo" class="ztree tree-box" style="width: 249px !important;"></ul>
+			</div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ManufacturerRankInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ManufacturerRankInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/foundation/manufacturerRank/manufacturerRank_info.js"></script>
+@}
